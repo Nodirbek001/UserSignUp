@@ -2,6 +2,7 @@ package configs
 
 import (
 	"errors"
+	_ "github.com/joho/godotenv/autoload" // load .env file automatically
 
 	"github.com/spf13/viper"
 )
@@ -69,5 +70,5 @@ func (c *Config) Validate() error {
 		return errors.New("http_portrequired")
 
 	}
-	return nil
+	return nil						
 }
