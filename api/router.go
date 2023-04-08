@@ -1,7 +1,11 @@
 package api
-import(
-	"github.com/gorilla/mux"
 
+import (
+	"NewProUser/service"
+
+	"go.uber.org/zap"
+
+	"github.com/gorilla/mux"
 )
 
 type routes struct{
@@ -10,5 +14,25 @@ type routes struct{
 }
 type api struct{
 	routes *routes
-	
+	userser service.UserService
+	logger *zap.Logger
 }
+
+func Init( 
+	root *mux.Router,
+	userser service.UserService,
+	logger *zap.Logger){
+		r:=routes{
+			root: root,
+			apiRoot: root.PathPrefix("api").Subrouter(),
+		}
+		api:=api{
+			routes: &r,
+			userser: userser,
+		}
+		api.initUser()
+	}
+	func (api *api) initUser()  {
+		api.routes.apiRoot.HandleFunc("/sign-up-user", api.SignUpUser).Methods("POST")
+	}
+	
