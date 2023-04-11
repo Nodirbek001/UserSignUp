@@ -34,7 +34,7 @@ func Load() Config {
 
 	v.SetDefault("ENVIRONMENT", "development")
 	v.SetDefault("LOG_LEVEL", "debug")
-	v.SetDefault("HTTP_PORT", "")
+	v.SetDefault("HTTP_PORT", "8082")
 	v.SetDefault("CASBIN_CONFIG_PATH", "")
 	v.SetDefault("MIDDLEWARE_ROLES_PATH", "")
 	v.SetDefault("JWT_SECRET_KEY_EXPIRE_MINUTES_COUNT", 720)

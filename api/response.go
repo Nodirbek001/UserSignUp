@@ -25,6 +25,31 @@ func writeJSON(w http.ResponseWriter, data interface{}) {
 	w.Write(bytes)
 }
 
+func WriteJSONWithSuccess(w http.ResponseWriter, data interface{}) {
+	data = response{
+		Error: false,
+		Data:  data,
+	}
+	bytes, _ := json.MarshalIndent(data, "", " ")
+	w.Header().Set("Content-Type", "Aplication/json")
+	w.Write(bytes)
+}
+
+func HandleInternalWithMessage(w http.ResponseWriter, err error, message string) error {
+	if err == nil {
+		return nil
+	}
+	log.Println(message+" ", err)
+	w.WriteHeader(http.StatusInternalServerError)
+	writeJSON(w, response{
+		Error: true,
+		Data: errorInfo{
+			Status:  http.StatusInternalServerError,
+			Message: message,
+		},
+	})
+	return err
+}
 func HandleBadRequestErrWithMessage(w http.ResponseWriter, err error, message string) error {
 	if err == nil {
 		return nil

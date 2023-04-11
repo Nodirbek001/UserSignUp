@@ -8,31 +8,30 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type routes struct{
-	root *mux.Router
+type routes struct {
+	root    *mux.Router
 	apiRoot *mux.Router
 }
-type api struct{
-	routes *routes
+type api struct {
+	routes  *routes
 	userser service.UserService
-	logger *zap.Logger
+	logger  *zap.Logger
 }
 
-func Init( 
+func Init(
 	root *mux.Router,
 	userser service.UserService,
-	logger *zap.Logger){
-		r:=routes{
-			root: root,
-			apiRoot: root.PathPrefix("api").Subrouter(),
-		}
-		api:=api{
-			routes: &r,
-			userser: userser,
-		}
-		api.initUser()
+	logger *zap.Logger) {
+	r := routes{
+		root:    root,
+		apiRoot: root.PathPrefix("api").Subrouter(),
 	}
-	func (api *api) initUser()  {
-		api.routes.apiRoot.HandleFunc("/sign-up-user", api.SignUpUser).Methods("POST")
+	api := api{
+		routes:  &r,
+		userser: userser,
 	}
-	
+	api.initUser()
+}
+func (api *api) initUser() {
+	api.routes.apiRoot.HandleFunc("/sign-up-user", api.SignUpUser).Methods("POST")
+}

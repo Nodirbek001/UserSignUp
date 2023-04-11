@@ -2,7 +2,11 @@ package api
 
 import (
 	"NewProUser/entity"
+	"NewProUser/utils"
 	"net/http"
+
+	"github.com/google/uuid"
+
 )
 
 func (api *api) SignUpUser(w http.ResponseWriter, r *http.Request) {
@@ -15,5 +19,34 @@ func (api *api) SignUpUser(w http.ResponseWriter, r *http.Request) {
 		HandleBadRequestErrWithMessage(w,err,"invalid json data:")
 		return
 	}
-	password,err:=utils
+	password,err:=utils.HashPassword(body.Password)
+	if err!=nil {
+		HandleInternalWithMessage(w, err, "error with hashing with password")
+		return
+	}
+	body.Password=password
+	body.ID=uuid.NewString()
+
+	id, err:=api.userser.SignUpUser(r.Context(), body)
+	 if err!=nil {
+		HandleInternalWithMessage(w, err,"error in SignUpUserApi")
+		return
+	 }
+
+	 tokenCredentials:=map[string]string{
+		"role":body.Role,
+	 }
+
+	 tokens, err:=utils.GenerateNewTokenForUser(id, tokenCredentials)
+
+	 if err!=nil {
+		HandleInternalWithMessage(w, err, "error in generate tokens")
+		return
+	 }
+	 WriteJSONWithSuccess(w, entity.SignUpResModel{
+		ID: body.ID,
+		Refresh: tokens.Refresh,
+		Access: tokens.Access,
+	 })
+	 
 }

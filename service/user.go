@@ -5,7 +5,6 @@ import (
 	"NewProUser/storage"
 	"context"
 
-	"github.com/docker/docker/daemon/logger"
 )
 
 type userServiceImpl struct{
@@ -25,5 +24,8 @@ type UserService interface{
 }
 
 func(s *userServiceImpl) SignUpUser(cxt context.Context, model entity.SignUpModel)(string,error){
+	id, err:=s.storage.UserF().SignUpUser(cxt, model)
+	if err!=nil {
+	}
 	return "", nil
 }
