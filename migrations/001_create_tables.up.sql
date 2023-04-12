@@ -3,5 +3,5 @@ CREATE TABLE IF NOT EXISTS users(
     full_name VARCHAR(256),
     photo TEXT,
     phone_number VARCHAR(13),
-    description TEXT,
+    description TEXT
 );

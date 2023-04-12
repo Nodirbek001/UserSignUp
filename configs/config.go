@@ -43,7 +43,7 @@ func Load() Config {
 	v.SetDefault("POSTGRES_PORT", 5432)
 	v.SetDefault("POSTGRES_USER", "postgres")
 	v.SetDefault("POSTGRES_PASSWORD", "12345")
-	v.SetDefault("POSTGRES_DB", "quiz")
+	v.SetDefault("POSTGRES_DB", "test25")
 	v.SetDefault("REDIS_HOST", "localhost")
 	v.SetDefault("REDIS_PORT", 6379)
 

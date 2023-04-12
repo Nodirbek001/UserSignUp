@@ -24,7 +24,7 @@ func GenerateNewTokenForUser(id string, credentials map[string]string) (*Token, 
 	if err != nil {
 		return nil, err
 	}
-	refreshToken, err := generateNewRefreshToken(id, credentials)
+	refreshToken, err := generateNewRefreshToken()
 	if err != nil {
 		return nil, err
 	}

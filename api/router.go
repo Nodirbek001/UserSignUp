@@ -24,7 +24,7 @@ func Init(
 	logger *zap.Logger) {
 	r := routes{
 		root:    root,
-		apiRoot: root.PathPrefix("api").Subrouter(),
+		apiRoot: root.PathPrefix("/api").Subrouter(),
 	}
 	api := api{
 		routes:  &r,
@@ -33,5 +33,5 @@ func Init(
 	api.initUser()
 }
 func (api *api) initUser() {
-	api.routes.apiRoot.HandleFunc("/sign-up-user", api.SignUpUser).Methods("POST")
+	api.routes.apiRoot.HandleFunc("/v1/sign-up-user", api.SignUpUser).Methods("POST")
 }

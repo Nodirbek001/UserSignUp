@@ -4,6 +4,7 @@ import (
 	"NewProUser/entity"
 	"NewProUser/storage"
 	"context"
+	"NewProUser/pkg/logger"
 
 )
 
@@ -26,6 +27,7 @@ type UserService interface{
 func(s *userServiceImpl) SignUpUser(cxt context.Context, model entity.SignUpModel)(string,error){
 	id, err:=s.storage.UserF().SignUpUser(cxt, model)
 	if err!=nil {
+		return id, nil
 	}
 	return "", nil
 }

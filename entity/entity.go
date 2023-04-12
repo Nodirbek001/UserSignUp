@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"NewProUser/utils"
+	"NewProUser/pkg/utils"
 	"fmt"
 )
 

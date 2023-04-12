@@ -1,0 +1,19 @@
+g, authorized, any
+g, unauthorized, any
+g, hokim, any
+g, admin, any
+
+p, admin, /api/v1/create-district, POST
+p, hokim, /api/v1/create-neighborhood, POST
+p, unauthorized, /api/v1/sign-up-governor, POST
+p, unauthorized, /api/v1/login-for-governor, POST
+p, unauthorized, /api/v1/sign-up-user, POST
+p, unauthorized, /api/v1/login-for-worker, POST{{realHost}}
+p, hokim, /api/v1/neighborhoods, GET
+p, hokim, /api/v1/neighborhood/, GET
+p, unauthorized, /api/v1/populition/, POST
+p, unauthorized, /api/v1/upload/, POST
+p, hokim, /api/v1/worker/, GET
+p, unauthorized, /api/v1/login/, POST
+
+p, hokim, /api/v1/notification/, POST

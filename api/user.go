@@ -2,11 +2,10 @@ package api
 
 import (
 	"NewProUser/entity"
-	"NewProUser/utils"
+	"NewProUser/pkg/utils"
 	"net/http"
 
 	"github.com/google/uuid"
-
 )
 
 func (api *api) SignUpUser(w http.ResponseWriter, r *http.Request) {

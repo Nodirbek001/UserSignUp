@@ -2,12 +2,12 @@ package ci
 
 import (
 	"NewProUser/configs"
-	"NewProUser/utils"
+	"NewProUser/pkg/utils"
 	"log"
 	"strings"
 	"sync"
 
-	"github.com/golang-migrate/migrate"
+	"github.com/golang-migrate/migrate/v4"
 	_ "github.com/golang-migrate/migrate/v4/database"          //database is needed for migration
 	_ "github.com/golang-migrate/migrate/v4/database/postgres" //postgres is used for database
 	_ "github.com/golang-migrate/migrate/v4/source/file"

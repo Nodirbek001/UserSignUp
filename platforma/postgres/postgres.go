@@ -1,12 +1,11 @@
 package postgres
 
 import (
-	"NewProUser/utils"
+	"NewProUser/pkg/utils"
 	"fmt"
 	"sync"
 
-	_ "github.com/lib/pq" //pq for connection
-
+	_ "github.com/lib/pq"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
